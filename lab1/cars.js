@@ -1,3 +1,4 @@
+// Class declaration
 class Vehicle { 
     constructor(make, model, year) {
         this.make = make;
@@ -6,7 +7,7 @@ class Vehicle {
      } 
 
      information(){
-        console.log(`Make: ${this.make} Model: ${this.model} Year: ${this.year}`);
+        console.log(`Make: ${this.make} \nModel: ${this.model} \nYear: ${this.year}`);
      }
 } 
 
