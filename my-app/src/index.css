@@ -16,9 +16,28 @@ code {
   text-align:center;
   color:red;
 }
+
+.main{
+  margin:150px;
+}
+
 .header{
   margin:5px 20px 5px 20px;
   height:50px;
   background:blue;
   color:bisque;
+  text-align:center; 
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.footer{
+  margin:5px 20px 5px 20px;
+  height:50px;
+  background:blue;
+  color:bisque;
+  text-align:center; 
+  font-family: 'Courier New', Courier, monospace;
+  
+ 
+  
 }

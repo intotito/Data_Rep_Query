@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-//import App from './App';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Header } from './components/content';
+import { Header, MainComponent } from './components/content';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Header />
-    <h2 className="etiti">Helllo World!</h2>
-    <h2 className="etiti">It is {new Date().toLocaleTimeString()}.</h2>
+    <App/>
   </React.StrictMode>
 );
 
