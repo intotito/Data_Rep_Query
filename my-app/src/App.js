@@ -6,32 +6,29 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Link
 } from "react-router-dom";
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
       <div className="App">
         <BrowserRouter>
+        {/* NavigationBar component sits at the top of every 
+          * page, while other components are swapped accordingly. 
+        */}
           <NavigationBar />
+          {/* Three different pages of the Web Application.
+          * 1 - Main Page that displays the MainComponent, Header and Footer.
+          * 2 - /create Page that displays the Header.
+          * 3 - /read Page that displays the footer.
+          */}
           <Routes>
-            <Route path="/" element={<div><Header /><MainComponent /><Footer /></div>} />
-            <Route path="/create" element={<Header />} />
-            <Route path="/read" element={<Footer/>} />
+            <Route path="/" element={<div><Header /><MainComponent /><Footer /></div>} /> 
+            <Route path="/read" element={<Header title="This is the Header in another Component"/>} />
+            <Route path="/create" element={<Footer title="This is the Footer in another Component"/>} />
           </Routes>
-
-         
-
-
         </BrowserRouter>
-
-
-
       </div>
     );
   }

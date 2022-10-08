@@ -4,23 +4,36 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
+/**
+ * The Header Component. Displays the title as provided by the 'title' property or
+ * the default message. 
+ */
 export class Header extends React.Component {
+    /** 
+     * @param {*} props - properties object passed to the constructor by the implementation
+     */
     constructor(props) {
         super(props);
         this.className = "header";
+        this.title = props.title? props.title : "My Header in another Component";
     }
+    /**
+     * @returns The JSX.Element that will be rendered to the user.
+     */
     render() {
-        console.log("classname = " + this.className);
         return (
-            <div className={this.className}><h3>{this.props.title}</h3></div>
+            <div className={this.className}><h3>{this.title}</h3></div>
         );
     }
 }
 
+/**
+ * MainComponent class represents the main content of the web application that shows the time and a message. 
+ */
 export class MainComponent extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+    /**
+     * @returns The JSX.Element that will be rendered to the user.
+     */
     render() {
         return (
             <div className='main'>
@@ -30,15 +43,22 @@ export class MainComponent extends React.Component {
         );
     }
 }
-
+/**
+ * The Footer Component extends the Header component. Displays the title as provided by the 'title' property or
+ * the default message. 
+ */
 export class Footer extends Header {
     constructor(props) {
         super(props);
         this.className = "footer";
+        this.title = props.title? props.title : "My Footer in another Component";
     }
 }
 
-
+/**
+ * The NavigationBar Component represents the NavBar situated at the top of the page
+ * for user to navigate throught the web application. 
+ */
 export class NavigationBar extends React.Component {
     render() {
         return (
