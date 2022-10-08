@@ -1,7 +1,13 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React from 'react';
-import { MainComponent, Header, Footer } from './components/content';
+import { MainComponent, Header, Footer, NavigationBar } from './components/content';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -11,9 +17,21 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header title="My Header in another component"/>
-        <MainComponent/>
-        <Footer title="My Footer in another component"/>
+        <BrowserRouter>
+          <NavigationBar />
+          <Routes>
+            <Route path="/" element={<div><Header /><MainComponent /><Footer /></div>} />
+            <Route path="/create" element={<Header />} />
+            <Route path="/read" element={<Footer/>} />
+          </Routes>
+
+         
+
+
+        </BrowserRouter>
+
+
+
       </div>
     );
   }
