@@ -3,6 +3,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 /**
  * The Header Component. Displays the title as provided by the 'title' property or
@@ -15,7 +17,7 @@ export class Header extends React.Component {
     constructor(props) {
         super(props);
         this.className = "header";
-        this.title = props.title? props.title : "My Header in another Component";
+        this.title = props.title ? props.title : "My Header in another Component";
     }
     /**
      * @returns The JSX.Element that will be rendered to the user.
@@ -51,7 +53,7 @@ export class Footer extends Header {
     constructor(props) {
         super(props);
         this.className = "footer";
-        this.title = props.title? props.title : "My Footer in another Component";
+        this.title = props.title ? props.title : "My Footer in another Component";
     }
 }
 
@@ -62,7 +64,7 @@ export class Footer extends Header {
 export class NavigationBar extends React.Component {
     render() {
         return (
-            <Navbar  bg="primary" variant="dark" expand="lg">
+            <Navbar bg="primary" variant="dark" expand="lg">
                 <Container>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
@@ -77,3 +79,107 @@ export class NavigationBar extends React.Component {
         );
     }
 }
+
+export class Read extends React.Component {
+    state = {
+        books: [
+            {
+                "title": "Learn Git in a Month of Lunches",
+                "isbn": "1617292419",
+                "pageCount": 0,
+                "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/umali.jpg",
+                "status": "MEAP",
+                "authors": ["Rick Umali"],
+                "categories": []
+            },
+            {
+                "title": "MongoDB in Action, Second Edition",
+                "isbn": "1617291609",
+                "pageCount": 0,
+                "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/banker2.jpg", "status": "MEAP",
+                "authors": [
+                    "Kyle Banker",
+                    "Peter Bakkum",
+                    "Tim Hawkins",
+                    "Shaun Verch",
+                    "Douglas Garrett"
+                ],
+                "categories": []
+            },
+            {
+                "title": "Getting MEAN with Mongo, Express, Angular, and Node",
+                "isbn": "1617292036",
+                "pageCount": 0,
+                "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/sholmes.jpg", "status": "MEAP",
+                "authors": ["Simon Holmes"],
+                "categories": []
+            }
+        ]
+    }
+    render() {
+        return (
+            <div>
+                <h3>Hello Read</h3>
+                <Books books={this.state} />
+            </div>
+        )
+    }
+}
+
+export class Create extends React.Component {
+    render() {
+        return (
+            <div>
+
+                <h3>Hello Create</h3>
+            </div>
+        )
+    }
+}
+
+export class Books extends React.Component {
+    constructor(props) {
+        super(props);
+        this.books = this.props.books.books;
+    }
+
+    render() {
+        return this.books.map((book) => {
+            return <BookItems item={book} key={book.isbn} />;
+        });
+    }
+}
+
+export class BookItems extends React.Component {
+    constructor(props) {
+        super(props);
+        this.item = this.props.item;
+        console.log(this.item);
+    }
+    renderX() {
+        console.log("What === " + this.item);
+        return (<div>aaa</div>)
+    }
+    render() {
+        return (
+            <div>
+                <Card>
+                    <Card.Header>{this.item.title}</Card.Header>
+                    <Card.Body>
+                        <blockquote className="blockquote mb-0">
+                           <img src={this.item.thumbnailUrl}/>
+                            <div>
+                            {this.item.authors.join(", ")}
+</div>
+                        </blockquote>
+                    </Card.Body>
+                </Card>
+
+               
+
+
+            </div>
+        )
+    }
+}
+

@@ -1,7 +1,7 @@
 
 import './App.css';
 import React from 'react';
-import { MainComponent, Header, Footer, NavigationBar } from './components/content';
+import { MainComponent, Header, Footer, Read, Create, NavigationBar } from './components/content';
 import {
   BrowserRouter,
   Routes,
@@ -25,8 +25,8 @@ export default class App extends React.Component {
           */}
           <Routes>
             <Route path="/" element={<div><Header /><MainComponent /><Footer /></div>} /> 
-            <Route path="/read" element={<Header title="This is the Header in another Component"/>} />
-            <Route path="/create" element={<Footer title="This is the Footer in another Component"/>} />
+            <Route path="/read" element={<Read/>} />
+            <Route path="/create" element={<Create/>} />
           </Routes>
         </BrowserRouter>
       </div>
