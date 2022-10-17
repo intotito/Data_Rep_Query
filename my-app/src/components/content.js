@@ -63,6 +63,9 @@ export class Footer extends Header {
  */
 export class NavigationBar extends React.Component {
     render() {
+        /**
+     * @returns The JSX.Element that will be rendered to the user.
+     */
         return (
             <Navbar bg="primary" variant="dark" expand="lg">
                 <Container>
@@ -80,7 +83,13 @@ export class NavigationBar extends React.Component {
     }
 }
 
+/**
+ * Read Component class, maintains a state as an array of books viewable on the web application
+ */
 export class Read extends React.Component {
+    /*
+        state object contains a single property that is an array of books with 3 entries
+    */
     state = {
         books: [
             {
@@ -116,6 +125,9 @@ export class Read extends React.Component {
             }
         ]
     }
+    /**
+     * @returns The JSX.Element that will be rendered to the user.
+     */
     render() {
         return (
             <div>
@@ -167,15 +179,15 @@ export class BookItems extends React.Component {
                     <Card.Header>{this.item.title}</Card.Header>
                     <Card.Body>
                         <blockquote className="blockquote mb-0">
-                           <img src={this.item.thumbnailUrl}/>
+                            <img src={this.item.thumbnailUrl} />
                             <div>
-                            {this.item.authors.join(", ")}
-</div>
+                                {this.item.authors.join(", ")}
+                            </div>
                         </blockquote>
                     </Card.Body>
                 </Card>
 
-               
+
 
 
             </div>
