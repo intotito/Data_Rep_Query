@@ -20,8 +20,8 @@ export default class App extends React.Component {
           <NavigationBar />
           {/* Three different pages of the Web Application.
           * 1 - Main Page that displays the MainComponent, Header and Footer.
-          * 2 - /create Page that displays the Header.
-          * 3 - /read Page that displays the footer.
+          * 2 - /create Page that displays the Create component.
+          * 3 - /read Page that displays the Read component.
           */}
           <Routes>
             <Route path="/" element={<div><Header /><MainComponent /><Footer /></div>} /> 

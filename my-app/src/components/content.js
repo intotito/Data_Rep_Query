@@ -126,7 +126,7 @@ export class Read extends React.Component {
         ]
     }
     /**
-     * @returns The JSX.Element that will be rendered to the user.
+     * @returns The JSX.Element that will be rendered to the user which is the Books component and a message
      */
     render() {
         return (
@@ -138,6 +138,9 @@ export class Read extends React.Component {
     }
 }
 
+/**
+ * Create component that displays a simple message
+ */
 export class Create extends React.Component {
     render() {
         return (
@@ -148,30 +151,38 @@ export class Create extends React.Component {
         )
     }
 }
-
+/**
+ * Books component contains the books to be displayed in the Read component. Each Item
+ * on the list is represented by the BookItem component. 
+ */
 export class Books extends React.Component {
     constructor(props) {
         super(props);
         this.books = this.props.books.books;
     }
-
+    /**
+     * @returns The JSX.Element that will be rendered to the user 
+     */
     render() {
         return this.books.map((book) => {
             return <BookItems item={book} key={book.isbn} />;
         });
     }
 }
-
+/**
+ * The BookItems component displays information about a single book
+ * The information to displayed is passed down from the Read component via the 
+ * Books component to individual BookItem components. 
+ */
 export class BookItems extends React.Component {
     constructor(props) {
         super(props);
         this.item = this.props.item;
         console.log(this.item);
     }
-    renderX() {
-        console.log("What === " + this.item);
-        return (<div>aaa</div>)
-    }
+    /**
+     * @returns The JSX.Element that will be rendered to the user 
+     */
     render() {
         return (
             <div>
