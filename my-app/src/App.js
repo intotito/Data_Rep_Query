@@ -1,7 +1,9 @@
 
 import './App.css';
 import React from 'react';
-import { MainComponent, Header, Footer, Read, Create, NavigationBar } from './components/content';
+import { MainComponent, Header, Footer, NavigationBar } from './components/content';
+import {Create} from './components/create';
+import {Read} from './components/read';
 import {
   BrowserRouter,
   Routes,

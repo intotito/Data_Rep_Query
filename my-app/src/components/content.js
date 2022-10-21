@@ -5,6 +5,8 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Books } from './books';
+
 
 /**
  * The Header Component. Displays the title as provided by the 'title' property or
@@ -83,92 +85,9 @@ export class NavigationBar extends React.Component {
     }
 }
 
-/**
- * Read Component class, maintains a state as an array of books viewable on the web application
- */
-export class Read extends React.Component {
-    /*
-        state object contains a single property that is an array of books with 3 entries
-    */
-    state = {
-        books: [
-            {
-                "title": "Learn Git in a Month of Lunches",
-                "isbn": "1617292419",
-                "pageCount": 0,
-                "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/umali.jpg",
-                "status": "MEAP",
-                "authors": ["Rick Umali"],
-                "categories": []
-            },
-            {
-                "title": "MongoDB in Action, Second Edition",
-                "isbn": "1617291609",
-                "pageCount": 0,
-                "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/banker2.jpg", "status": "MEAP",
-                "authors": [
-                    "Kyle Banker",
-                    "Peter Bakkum",
-                    "Tim Hawkins",
-                    "Shaun Verch",
-                    "Douglas Garrett"
-                ],
-                "categories": []
-            },
-            {
-                "title": "Getting MEAN with Mongo, Express, Angular, and Node",
-                "isbn": "1617292036",
-                "pageCount": 0,
-                "thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/sholmes.jpg", "status": "MEAP",
-                "authors": ["Simon Holmes"],
-                "categories": []
-            }
-        ]
-    }
-    /**
-     * @returns The JSX.Element that will be rendered to the user which is the Books component and a message
-     */
-    render() {
-        return (
-            <div>
-                <h3>Hello Read</h3>
-                <Books books={this.state} />
-            </div>
-        )
-    }
-}
 
-/**
- * Create component that displays a simple message
- */
-export class Create extends React.Component {
-    render() {
-        return (
-            <div>
 
-                <h3>Hello Create</h3>
-            </div>
-        )
-    }
-}
-/**
- * Books component contains the books to be displayed in the Read component. Each Item
- * on the list is represented by the BookItem component. 
- */
-export class Books extends React.Component {
-    constructor(props) {
-        super(props);
-        this.books = this.props.books.books;
-    }
-    /**
-     * @returns The JSX.Element that will be rendered to the user 
-     */
-    render() {
-        return this.books.map((book) => {
-            return <BookItems item={book} key={book.isbn} />;
-        });
-    }
-}
+
 /**
  * The BookItems component displays information about a single book
  * The information to displayed is passed down from the Read component via the 
@@ -178,7 +97,6 @@ export class BookItems extends React.Component {
     constructor(props) {
         super(props);
         this.item = this.props.item;
-        console.log(this.item);
     }
     /**
      * @returns The JSX.Element that will be rendered to the user 
