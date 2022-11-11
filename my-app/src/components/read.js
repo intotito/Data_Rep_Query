@@ -15,13 +15,12 @@ import React from 'react';
     /**
      * This method is called whenever the component is added to the root DOM
      * and displayed to the user
-     * This method fetches data from an API Repository on the web using HTTP GET 
-     * method. Response is saved in the component's state. 
+     * This method fetches data from the server 'app.js' running at localhost:4000
      */
     componentDidMount() {
-        axios.get('https://jsonblob.com/api/jsonblob/1027219693823606784')
+            axios.get('http://localhost:4000/api/books')
             .then(response => {
-                this.setState({ books: response.data });
+                this.setState({ books: response.data.mybooks.books });
                 console.log(this.state);
             })
             .catch((error) => { console.log("Something went wront") });

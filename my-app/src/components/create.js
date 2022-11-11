@@ -1,7 +1,8 @@
+import axios from "axios";
 import React from "react";
 /**
  * Create component displays a form for entering values for 
- * books Title, Cover and Author. 
+ * books Title, Cover and Year. 
  */
 export class Create extends React.Component {
     /**
@@ -12,11 +13,11 @@ export class Create extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onChangeBookTitle = this.onChangeBookTitle.bind(this);
         this.onChangeBookCover = this.onChangeBookCover.bind(this);
-        this.onChangeBookAuthor = this.onChangeBookAuthor.bind(this);
+        this.onChangeBookYear = this.onChangeBookYear.bind(this);
         this.state = {
             title: '',
             cover: '',
-            author: ''
+            year: ''
         };
     }
     /**
@@ -25,8 +26,21 @@ export class Create extends React.Component {
      */
     handleSubmit(event) {
         event.preventDefault();
-        console.log(`title = ${this.state.title} cover = ${this.state.cover} author = ${this.state.author}`);
-        this.setState({ title: '', cover: '', author: '' });
+        console.log(`title = ${this.state.title} cover = ${this.state.cover} year = ${this.state.year}`);
+        const book = {
+            title:this.state.title,
+            cover:this.state.cover,
+            year:this.state.year
+        }
+        this.setState({ title: '', cover: '', year: '' });
+        // Make a HTTP Post request to server, with object 'book' attached to the request
+        axios.post('http://localhost:4000/api/book', book)
+            .then((res)=>{
+                console.log(res.data); // Output Message from the Server
+            })
+            .catch((why)=>{
+                console.log("Exception encountered - " + why); // Output reason for error
+            });
     }
     /**
      * This method handles changes made to the Title field
@@ -43,40 +57,47 @@ export class Create extends React.Component {
         this.setState({ cover: event.target.value });
     }
     /**
-     * This method handles changes made to the Author field
+     * This method handles changes made to the Year field
      * @param {Event} event 
      */
-    onChangeBookAuthor(event) {
-        this.setState({ author: event.target.value });
+    onChangeBookYear(event) {
+        this.setState({ year: event.target.value });
     }
+
+   
+
     render() {
         return (
             <div>
+                
                 <h3>Hello Create</h3>
-                <form onSubmit={this.handleSubmit}>
+
+            <form></form>
+
+                <form onSubmit={this.handleSubmit} method='post' action='http://localhost:4000/api/book' target='_blank'>
 
                     <div className="form-group">
                         <label>Add Book Title: </label>
-                        <input type="text"
+                        <input type="text" id='title' name='title'
                             className="form-control"
                             value={this.state.title}
                             onChange={this.onChangeBookTitle}
                         />
                     </div>
                     <div className="form-group">
-                        <label>Add Book Cover: </label>
-                        <input type="text"
+                        <label>Add Book Year: </label>
+                        <input type="text" id='year' name='year'
                             className="form-control"
-                            value={this.state.cover}
-                            onChange={this.onChangeBookCover}
+                            value={this.state.year}
+                            onChange={this.onChangeBookYear}
                         />
                     </div>
                     <div className="form-group">
-                        <label>Add Book Author: </label>
-                        <input type="text"
+                        <label>Add Book Cover URL: </label>
+                        <input type="text" id='url' name='url'
                             className="form-control"
-                            value={this.state.author}
-                            onChange={this.onChangeBookAuthor}
+                            value={this.state.cover}
+                            onChange={this.onChangeBookCover}
                         />
                     </div>
                     <input className="btn btn-primary" type='submit' value='Add Book' />
