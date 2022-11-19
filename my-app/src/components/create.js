@@ -2,7 +2,7 @@ import axios from "axios";
 import React from "react";
 /**
  * Create component displays a form for entering values for 
- * books Title, Cover and Year. 
+ * books Title, Cover and Author. 
  */
 export class Create extends React.Component {
     /**
@@ -13,11 +13,11 @@ export class Create extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onChangeBookTitle = this.onChangeBookTitle.bind(this);
         this.onChangeBookCover = this.onChangeBookCover.bind(this);
-        this.onChangeBookYear = this.onChangeBookYear.bind(this);
+        this.onChangeBookAuthor = this.onChangeBookAuthor.bind(this);
         this.state = {
             title: '',
             cover: '',
-            year: ''
+            author: ''
         };
     }
     /**
@@ -26,13 +26,13 @@ export class Create extends React.Component {
      */
     handleSubmit(event) {
         event.preventDefault();
-        console.log(`title = ${this.state.title} cover = ${this.state.cover} year = ${this.state.year}`);
+        console.log(`title = ${this.state.title} cover = ${this.state.cover} author = ${this.state.author}`);
         const book = {
             title:this.state.title,
             cover:this.state.cover,
-            year:this.state.year
+            author:this.state.author
         }
-        this.setState({ title: '', cover: '', year: '' });
+        this.setState({ title: '', cover: '', author: '' });
         // Make a HTTP Post request to server, with object 'book' attached to the request
         axios.post('http://localhost:4000/api/book', book)
             .then((res)=>{
@@ -57,11 +57,11 @@ export class Create extends React.Component {
         this.setState({ cover: event.target.value });
     }
     /**
-     * This method handles changes made to the Year field
+     * This method handles changes made to the Author field
      * @param {Event} event 
      */
-    onChangeBookYear(event) {
-        this.setState({ year: event.target.value });
+    onChangeBookAuthor(event) {
+        this.setState({ author: event.target.value });
     }
 
    
@@ -85,16 +85,16 @@ export class Create extends React.Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label>Add Book Year: </label>
-                        <input type="text" id='year' name='year'
+                        <label>Add Book Author: </label>
+                        <input type="text" id='author' name='author'
                             className="form-control"
-                            value={this.state.year}
-                            onChange={this.onChangeBookYear}
+                            value={this.state.author}
+                            onChange={this.onChangeBookAuthor}
                         />
                     </div>
                     <div className="form-group">
                         <label>Add Book Cover URL: </label>
-                        <input type="text" id='url' name='url'
+                        <input type="text" id='cover' name='cover'
                             className="form-control"
                             value={this.state.cover}
                             onChange={this.onChangeBookCover}

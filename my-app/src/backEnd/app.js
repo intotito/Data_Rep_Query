@@ -9,11 +9,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const port = 4000;
-/*
-* Javascript Object that will be sent to clients as JSON
-*/
-
-
 
 app.use(cors());
 app.use(function (req, res, next) {
@@ -22,6 +17,26 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
+const mongoose = require('mongoose');
+
+main().catch(err => console.log(err));
+
+async function main() {
+    await mongoose.connect('mongodb+srv://admin:admin@cluster0.qwjlitc.mongodb.net/?retryWrites=true&w=majority');
+
+    // use `await mongoose.connect('mongodb://user:password@localhost:27017/test');` if your database has auth enabled
+} ``
+
+const bookSchema = new mongoose.Schema({
+    title: String,
+    cover: String,
+    author: String
+});
+
+const bookModel = mongoose.model('Books', bookSchema);
+
+
 
 var data = {
     "books": [
@@ -97,8 +112,13 @@ app.post('/name', (req, res) => {
 * Service POST requests directed to /api/book
 */
 
-app.post('/api/book', (req, res)=>{
-    console.log('Title: ' + req.body.title + ' Cover: ' + req.body.cover + ' Year: ' + req.body.year); // Display title, cover and year on the console
+app.post('/api/book', (req, res) => {
+    console.log('Title: ' + req.body.title + ' Cover: ' + req.body.cover + ' Author: ' + req.body.author); // Display title, cover and year on the console
+    bookModel.create({
+        title: req.body.title,
+        cover: req.body.cover,
+        author: req.body.author
+    });
     res.send('Update completed Successfully!!'); // Send a message back to the client [for debugging]
 })
 
@@ -109,11 +129,14 @@ app.get('/hello/:name', (req, res) => {
     res.send('Hello ' + req.params.name);
 })
 /*
-* Service GET request from /api/books and return a JSON version of 
-* the object - data.
+* Service GET request from /api/books that fetches
+* data from MongoDB Collection 'bookModel'
 */
 app.get('/api/books', (req, res) => {
-    res.json({ mybooks: data });
+    bookModel.find((err, data)=>{
+        res.json(data)
+    })
+//    res.json({ mybooks: data });
 })
 /*
 * Service GET request from /test and send back a HTML file 'index.html'
@@ -126,4 +149,17 @@ app.get('/test', (req, res) => {
 */
 app.listen(port, () => {
     console.log(`Server app listening on port ${port}`)
+})
+
+/*
+* Service GET request from /api/book supplying a unique id as parameter
+*/
+app.get('/api/book/:id', (req,res)=>{
+    console.log(req.params.id);
+    bookModel.findById(req.params.id, (error, data) =>{
+        console.log(data);
+        res.json(data);
+    });
+//    bookModel.find({_id:req.params.id});
+ //   res.send('data');
 })

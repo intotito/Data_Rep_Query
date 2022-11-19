@@ -14,7 +14,7 @@ export class Books extends React.Component {
      */
     render() {
         return this.props.books.map((book) => {
-            return <BookItems item={book} key={book.isbn} />;
+            return <BookItems item={book} key={book._id} />;
         });
     }
 }

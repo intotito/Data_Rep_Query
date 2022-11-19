@@ -20,7 +20,7 @@ import React from 'react';
     componentDidMount() {
             axios.get('http://localhost:4000/api/books')
             .then(response => {
-                this.setState({ books: response.data.mybooks.books });
+                this.setState({ books: response.data });
                 console.log(this.state);
             })
             .catch((error) => { console.log("Something went wront") });

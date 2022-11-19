@@ -105,12 +105,12 @@ export class BookItems extends React.Component {
         return (
             <div>
                 <Card>
-                    <Card.Header>{this.item.title}</Card.Header>
+                    <Card.Header>{this.props.item.title}</Card.Header>
                     <Card.Body>
                         <blockquote className="blockquote mb-0">
-                            <img src={this.item.thumbnailUrl} />
+                            <img src={this.props.item.cover} />
                             <div>
-                                {this.item.authors.join(", ")}
+                                {this.props.item.author}
                             </div>
                         </blockquote>
                     </Card.Body>
