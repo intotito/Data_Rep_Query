@@ -5,6 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Link } from 'react-router-dom';
 import { Books } from './books';
 
 
@@ -106,7 +107,7 @@ export class BookItems extends React.Component {
             <div>
                 <Card>
                     <Card.Header>{this.props.item.title}</Card.Header>
-                    <Card.Body>
+                    <Card.Body>     
                         <blockquote className="blockquote mb-0">
                             <img src={this.props.item.cover} />
                             <div>
@@ -114,6 +115,7 @@ export class BookItems extends React.Component {
                             </div>
                         </blockquote>
                     </Card.Body>
+                    <Link to={'/edit/' + this.props.item._id}className='btn btn-primary'>Edit</Link>
                 </Card>
 
 

@@ -4,6 +4,8 @@ import React from 'react';
 import { MainComponent, Header, Footer, NavigationBar } from './components/content';
 import {Create} from './components/create';
 import {Read} from './components/read';
+import { Edit } from './components/edit';
+import { FCreate } from './components/FCreate';
 import {
   BrowserRouter,
   Routes,
@@ -29,6 +31,7 @@ export default class App extends React.Component {
             <Route path="/" element={<div><Header /><MainComponent /><Footer /></div>} /> 
             <Route path="/read" element={<Read/>} />
             <Route path="/create" element={<Create/>} />
+            <Route path="/edit/:id" element={<Edit/>}/>
           </Routes>
         </BrowserRouter>
       </div>

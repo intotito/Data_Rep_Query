@@ -163,3 +163,21 @@ app.get('/api/book/:id', (req,res)=>{
 //    bookModel.find({_id:req.params.id});
  //   res.send('data');
 })
+
+/*
+* Service PUT request from clients to update attributes of a book
+*/
+app.put('/api/book/:id', (req, res) => {
+    console.log("Update: " + req.params.id, req.body);
+    bookModel.findByIdAndUpdate(req.params.id, req.body, //, {new:true} ** This stopped my program from working until i removed them not sure where it came from ***
+    (error,data)=>{
+        if(error){
+            console.log(error)
+        } else {
+            console.log("update successful: ", data);
+            res.send(data);
+        }
+        
+    })
+})
+
