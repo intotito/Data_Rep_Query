@@ -11,10 +11,12 @@ export class Books extends React.Component {
     
     /**
      * @returns The JSX.Element that will be rendered to the user 
+     * Method 'reload' passed on from the parent Component (Read) is subsequently passed on to 
+     * individual BookItems Components.
      */
     render() {
         return this.props.books.map((book) => {
-            return <BookItems item={book} key={book._id} />;
+            return <BookItems item={book} key={book._id} reload={this.props.reload} />;
         });
     }
 }

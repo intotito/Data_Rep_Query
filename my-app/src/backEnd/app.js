@@ -180,4 +180,13 @@ app.put('/api/book/:id', (req, res) => {
         
     })
 })
+/*
+* Service DELETE request from clients for a selected book. 
+*/
+app.delete('/api/book/:id', (req, res) => {
+    console.log("Delete: ", req.params.id, req.body);
+    bookModel.findByIdAndDelete({_id:req.params.id}, (err, data) => {
+        res.send(data);
+    })
+});
 

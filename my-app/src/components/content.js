@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import { Books } from './books';
+import axios from 'axios';
 
 
 /**
@@ -98,6 +99,7 @@ export class BookItems extends React.Component {
     constructor(props) {
         super(props);
         this.item = this.props.item;
+        this.deleteBook = this.deleteBook.bind(this);
     }
     /**
      * @returns The JSX.Element that will be rendered to the user 
@@ -107,7 +109,7 @@ export class BookItems extends React.Component {
             <div>
                 <Card>
                     <Card.Header>{this.props.item.title}</Card.Header>
-                    <Card.Body>     
+                    <Card.Body>
                         <blockquote className="blockquote mb-0">
                             <img src={this.props.item.cover} />
                             <div>
@@ -115,7 +117,9 @@ export class BookItems extends React.Component {
                             </div>
                         </blockquote>
                     </Card.Body>
-                    <Link to={'/edit/' + this.props.item._id}className='btn btn-primary'>Edit</Link>
+                    <Link to={'/edit/' + this.props.item._id} className='btn btn-primary'>Edit</Link>
+                    <Button className='btn btn-danger' onClick={this.deleteBook}>Delete</Button>
+                    {/* <Link to={'/delete' + this.props.item._id}className='btn btn-danger'>Delete</Link> */}
                 </Card>
 
 
@@ -123,6 +127,17 @@ export class BookItems extends React.Component {
 
             </div>
         )
+    }
+/**
+ * Event function that delete a selected book
+ * @param {Event} event 
+ */
+    deleteBook(event) {
+        event.preventDefault();
+        axios.delete('http://localhost:4000/api/book/' + this.props.item._id)
+        .then(()=>{
+            this.props.reload();
+        }).catch();
     }
 }
 
