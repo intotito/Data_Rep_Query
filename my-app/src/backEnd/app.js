@@ -8,6 +8,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+const path = require('path');
+app.use(express.static(path.join(__dirname, '../../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
+
+
 const port = 4000;
 
 app.use(cors());
@@ -189,4 +194,11 @@ app.delete('/api/book/:id', (req, res) => {
         res.send(data);
     })
 });
+
+
+//add at the bottom just over app.listen
+// Handles any requests that don't match the ones above
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/../../build/index.html'));
+    });
 
